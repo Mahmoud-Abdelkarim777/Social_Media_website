@@ -15,7 +15,7 @@ const app = express();
 // Middleware (الترتيب هنا هو السر)
 // =========================
 app.use(cors({
-  origin: true, // يسمح لأي مصدر مؤقتاً للتجربة
+  origin: "*", // يسمح لأي مصدر مؤقتاً للتجربة
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
