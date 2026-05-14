@@ -53,17 +53,17 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => {
   console.log("MongoDB Connected 🔥");
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+  app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});;
 })
 .catch((err) => {
   console.log("MongoDB Error:", err.message);
 
   // تشغيل السيرفر حتى لو MongoDB فشل
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log("Server running WITHOUT DB");
-  });
+  app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 });
 // =========================
 // Auth Middleware
