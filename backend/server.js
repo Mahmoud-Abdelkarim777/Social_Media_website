@@ -164,11 +164,8 @@ app.post("/api/login", async (req, res) => {
 //     res.status(500).json({ error: err.message });
 //   }
 // });
-app.get("/api/posts", (req, res) => {
-  res.status(200).json({
-    ok: true,
-    message: "WORKING NOW"
-  });
+app.get("/", (req, res) => {
+  res.send("API IS ALIVE");
 });
 // =========================
 // Create Post (Protected)
