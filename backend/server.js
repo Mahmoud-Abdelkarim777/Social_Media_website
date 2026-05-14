@@ -48,22 +48,23 @@ const upload = multer({ storage });
 // =========================
 // MongoDB Connection
 // =========================
+const PORT = process.env.PORT || 8080;
+
 mongoose.connect(process.env.MONGO_URI, {
   serverSelectionTimeoutMS: 5000,
 })
 .then(() => {
   console.log("MongoDB Connected 🔥");
 
-  app.listen(process.env.PORT || 8080, () => {
-    console.log("Server running");
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
   });
-
 })
 .catch((err) => {
   console.log("MongoDB Error:", err.message);
 
-  // مهم جدًا: شغل السيرفر حتى لو DB fail
-  app.listen(process.env.PORT || 8080, () => {
+  // تشغيل السيرفر حتى لو MongoDB فشل
+  app.listen(PORT, "0.0.0.0", () => {
     console.log("Server running WITHOUT DB");
   });
 });
