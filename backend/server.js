@@ -164,9 +164,10 @@ app.post("/api/login", async (req, res) => {
 //     res.status(500).json({ error: err.message });
 //   }
 // });
-app.get("/api/posts", async (req, res) => {
-  res.json({
-    message: "API works"
+app.get("/api/posts", (req, res) => {
+  res.status(200).json({
+    ok: true,
+    message: "WORKING NOW"
   });
 });
 // =========================
