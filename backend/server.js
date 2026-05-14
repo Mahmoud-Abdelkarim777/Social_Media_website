@@ -48,18 +48,24 @@ const upload = multer({ storage });
 // =========================
 // MongoDB Connection
 // =========================
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected 🔥");
-  })
-  .catch((err) => {
-    console.log("MongoDB Error:", err.message);
+mongoose.connect(process.env.MONGO_URI, {
+  serverSelectionTimeoutMS: 5000,
+})
+.then(() => {
+  console.log("MongoDB Connected 🔥");
+
+  app.listen(process.env.PORT || 8080, () => {
+    console.log("Server running");
   });
 
-// السيرفر يشتغل مهما حصل في MongoDB
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+})
+.catch((err) => {
+  console.log("MongoDB Error:", err.message);
+
+  // مهم جدًا: شغل السيرفر حتى لو DB fail
+  app.listen(process.env.PORT || 8080, () => {
+    console.log("Server running WITHOUT DB");
+  });
 });
 // =========================
 // Auth Middleware
