@@ -1,0 +1,40 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 575px) {
+  #createPostBtn{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99999;
+  }
+  #order-list{
+    font-size: 16px;
+  }
+  #instruction{
+    margin: 0 12px;
+  }
+}
+@media (min-width: 576px) {
+  #createPostBtn{
+    position: fixed;
+    bottom: 20px !important;  
+    right: 20px !important;
+    z-index: 99999;
+  }
+  #order-list{
+    font-size: 20px;
+  }
+  #instruction{
+    margin: 0 25px;
+  }
+}
+
+#instruction{
+  text-align: justify;
+}
+
+

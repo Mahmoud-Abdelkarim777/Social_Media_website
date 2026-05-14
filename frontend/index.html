@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- import css style -->
+   <link rel="stylesheet" href="style.css">
+  <!-- import Bootstrap CSS -->
+  <link rel="stylesheet" href="./node_modules/bootstrap//dist/css/bootstrap.min.css">
+  <!-- import axios -->
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+  <!-- import toastify js -->
+  <link rel="stylesheet" type="text/css" href="./node_modules/toastify-js/src/toastify.css">
+  <title>Social Medial Project</title>
+</head>
+<body class="bg-body-secondary">
+<!-- start modal -->
+  <!-- Button trigger modal -->
+<button id="createPostBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="green" class="bi bi-plus-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+</svg>
+</button>
+
+<!-- start Modal of create post -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-column">
+        <input id="title" class="form-control my-2" placeholder="Title عنوان البوست">
+        <input id="image" disabled class="form-control my-2" placeholder="Image URL Completes Automatically." >
+      </div>
+      <div class="modal-body">
+        <textarea id="body" class="form-control my-2" placeholder="Post description وصف البوست"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button  type="button" id="submit-post-btn" onclick="createPost();" class="btn btn-primary" >
+          Create Post
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+<!-- start Modal of login -->
+<div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-column">
+        <input id="email" class="form-control my-2" placeholder="Email">
+        <input id="login-password" class="form-control my-2" placeholder="Password" type="password">
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button onclick="login()" class="btn btn-primary" >
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+<!-- start Modal of register -->
+<div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-column">
+        <input id="name" class="form-control my-2" placeholder="Name">
+        <input id="email-register" class="form-control my-2" placeholder="Email">
+        <input id="password-register" class="form-control my-2" placeholder="Password" type="password">
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button onclick="register()" class="btn btn-primary">
+          Register
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+<!-- start Modal of logout -->
+<div class="modal fade" id="logoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-column">
+          <h5>Are you sure you want to logout?</h5>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button onclick="logout()" class="btn btn-primary" >
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+
+  <!-- start navbar  -->
+  <header>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-9">
+        <nav class="navbar navbar-expand-lg bg-white rounded shadow">
+          <div class="container">
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  
+                  <a class="nav-link ac tive disabled" aria-current="page" aria-disabled="true" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  
+                  <a class="nav-link disabled" aria-disabled="true" href="#">Profile</a>
+                </li>
+                <li class="d-flex align-items-center nav-item">
+                  <p class="m-0" id="user-name-span"></p>
+                </li>
+              </ul>
+              <button style="display: none;" id="logout-btn" data-bs-toggle="modal" data-bs-target="#logoutModal" class= "btn btn-outline-success mx-0 mx-md-2" type="button">Logout</button>
+              <button id="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-success my-2 mx-0 mx-md-2" type="button">Login</button>
+              <button id="register-btn" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-outline-success" type="button">Register</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- end navbar -->
+  <!-- start main content -->
+  <main>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-9">
+        <!-- start postes -->
+        <div id="postes">
+          <!-- start post -->
+          <div id="post" class=" w-100 shadow">
+            <div class="card w-100 my-5" style="width: 18rem;">
+              <div class="card-body">
+                <img style="width: 40px; height: 40px;" src="./img/user-img.png" alt="user-img">
+                <h5 class="d-inline">@owner</h5>
+              </div>
+              <div id="instruction" class="card-body py-0 ">
+                <h4 class="text-center">تنبيه</h4>
+                  <ol id="order-list" class="text-black p-0" style="direction: rtl;">
+                    <li>هذا المنتج هدفه تعليمي فقط </li>
+                    <li>لا تستخدم هذا المنتج في أي أغراض غير قانونية أو غير أخلاقية </li>
+                    <li>نحن نحتفظ بحق إيقاف أو تعديل هذا المنتج في أي وقت </li>
+                    <li>احذر ان تسجل ببيانات شخصية مهمة </li>
+                    <li>لا يمكنك تعديل بوست تم انشاؤه </li>
+                    <li>لا يمكنك حذف بوست تم انشاؤه الا بواسطة المالك </li>
+                    <li>احذر ان ترفع صورة شخصية </li>
+                    <li>لا يمكنك انشاء بوست الا اذا كنت مسجل دخول </li>
+                    <li>تم تصميم الباك اند ب AI  </li>
+                    <li>  تم تطوير الفرونت اند بمجهودي الشخصي ولله الحمد والفضل </li>
+                  </ol>
+              </div>
+            </div>
+          </div>
+          <!-- end post -->
+        </div>
+        <!-- end postes -->
+      </div>
+    </div>
+  </main>
+  <!-- end main content -->
+</body>
+<!-- import Bootstrap JS -->
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- import toastify js -->
+<script type="text/javascript" src="./node_modules/toastify-js/src/toastify.js"></script>
+<!-- external javascript -->
+<script src="main.js"></script>
+</html>
