@@ -10,7 +10,7 @@ const path = require("path");
 const Post = require("./models/Post");
 const User = require("./models/User");
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 
 const app = express();
