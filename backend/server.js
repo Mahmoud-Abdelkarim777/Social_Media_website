@@ -47,27 +47,23 @@ const upload = multer({ storage });
 // =========================
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
-
 mongoose.connect(process.env.MONGO_URI, {
   serverSelectionTimeoutMS: 5000,
 })
 .then(() => {
   console.log("MongoDB Connected 🔥");
 
-  app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+    app.listen(PORT, () => {
+      console.log(`Server running on ${PORT}`);
+    });
 })
 .catch((err) => {
   console.log("MongoDB Error:", err.message);
 
   // تشغيل السيرفر حتى لو MongoDB فشل
-  app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+    app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+  });
 });
 // =========================
 // Auth Middleware
