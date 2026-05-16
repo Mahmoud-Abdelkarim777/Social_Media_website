@@ -53,17 +53,12 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => {
   console.log("MongoDB Connected 🔥");
 
-    app.listen(PORT, () => {
-      console.log(`Server running on ${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+  });
 })
 .catch((err) => {
   console.log("MongoDB Error:", err.message);
-
-  // تشغيل السيرفر حتى لو MongoDB فشل
-    app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
-  });
 });
 // =========================
 // Auth Middleware
@@ -199,16 +194,3 @@ app.post("/api/posts", auth, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// const express = require("express");
-
-// const app = express();
-
-// app.get("/", (req, res) => {
-//   res.send("API IS WORKING");
-// });
-
-// const PORT = process.env.PORT || 8080;
-
-// app.listen(PORT, () => {
-//   console.log(`Server running on ${PORT}`);
-// });
