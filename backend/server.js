@@ -151,17 +151,17 @@ app.post("/api/login", async (req, res) => {
 // =========================
 // Get Posts (Public)
 // =========================
-// app.get("/api/posts", async (req, res) => {
-//   try {
-//     const posts = await Post.find().sort({ createdAt: -1 });
-//     res.json(posts);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-app.get("/", (req, res) => {
-  res.send("API IS ALIVE");
+app.get("/api/posts", async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ createdAt: -1 });
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
+// app.get("/", (req, res) => {
+//   res.send("API IS ALIVE");
+// });
 // =========================
 // Create Post (Protected)
 // =========================
