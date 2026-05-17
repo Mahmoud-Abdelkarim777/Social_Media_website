@@ -26,18 +26,18 @@ function getPosts() {
   axios.get(`${API_BASE}posts`)
     .then((res) => {
       const posts = res.data;
-      let container = document.getElementById("postes");
-
+      let container = document.getElementById("postes");  
+      let instructions = document.getElementById("instructions");
       if (!container) {
         console.log("container not found");
         return;
       }
       setTimeout(()=>{
-        container.innerHTML = "";
+        instructions.innerHTML = "";
       }, 10000)
-
+      container.innerHTML = "";
       for (const post of posts) {        
-        content = `
+        let content = `
           <div class="w-100 shadow">
             <div class="card w-100 my-5">
               <div class="card-body">
@@ -59,8 +59,8 @@ function getPosts() {
             </div>
           </div>
         `;
+        container.innerHTML += content;
       }
-      container.innerHTML += content;
     })
     .catch((err) => {
       showAlert("❌ Error loading posts:" , "#FF0000");
