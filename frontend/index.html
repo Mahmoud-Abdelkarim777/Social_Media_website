@@ -21,7 +21,7 @@
 <body class="bg-body-secondary">
 <!-- start modal -->
   <!-- Button trigger modal -->
-<button id="createPostBtn" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<button id="createPostBtn" type="button" class="btn" aria-label="Create new post" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="green" class="bi bi-plus-circle" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
@@ -40,8 +40,8 @@
         <textarea id="body" class="form-control my-2" placeholder="Post description وصف البوست"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button  type="button" id="submit-post-btn" onclick="createPost();" class="btn btn-primary" >
+        <button type="button" class="btn btn-secondary" aria-label="Close modal" data-bs-dismiss="modal">Close</button>
+        <button  type="button" id="submit-post-btn" onclick="createPost();" class="btn btn-primary" aria-label="Submit new post">
           Create Post
         </button>
       </div>
@@ -59,8 +59,10 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button onclick="login()" class="btn btn-primary" >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close modal">
+          Close
+        </button>
+        <button onclick="login()" class="btn btn-primary" aria-label="Login">
           Login
         </button>
       </div>
@@ -79,8 +81,10 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button onclick="register()" class="btn btn-primary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close modal">
+          Close
+        </button>
+        <button onclick="register()" class="btn btn-primary" aria-label="Register new user">
           Register
         </button>
       </div>
@@ -97,8 +101,10 @@
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button onclick="logout()" class="btn btn-primary" >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close modal">
+          Close
+        </button>
+        <button onclick="logout()" class="btn btn-primary" aria-label="Logout">
           Logout
         </button>
       </div>
@@ -131,9 +137,15 @@
                   <p class="m-0" id="user-name-span"></p>
                 </li>
               </ul>
-              <button style="display: none;" id="logout-btn" data-bs-toggle="modal" data-bs-target="#logoutModal" class= "btn btn-outline-success mx-0 mx-md-2" type="button">Logout</button>
-              <button id="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-success my-2 mx-0 mx-md-2" type="button">Login</button>
-              <button id="register-btn" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-outline-success" type="button">Register</button>
+              <button style="display: none;" id="logout-btn" data-bs-toggle="modal" data-bs-target="#logoutModal" class= "btn btn-outline-success mx-0 mx-md-2" type="button" aria-label="Logout">
+                Logout
+              </button>
+              <button id="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-success my-2 mx-0 mx-md-2" type="button" aria-label="Login">
+                Login
+              </button>
+              <button id="register-btn" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-outline-success" type="button" aria-label="Register">
+                Register
+              </button>
             </div>
           </div>
         </nav>
