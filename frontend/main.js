@@ -34,7 +34,7 @@ function getPosts() {
       }
       setTimeout(()=>{
         instructions.innerHTML = "";
-      }, 10000)
+      }, 15000)
       container.innerHTML = "";
       for (const post of posts) {        
         let content = `
