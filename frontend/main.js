@@ -1,6 +1,6 @@
 // const { $where } = require("../backend/models/User");
 
-const API = "http://localhost:5000/api";
+const API_BASE = "https://socialmediawebsite-production-9909.up.railway.app/api/";
 // const API = "http://127.0.0.1:5000/api/";
 // =========================
 // ⏳ Time Ago Function
@@ -23,7 +23,7 @@ function timeAgo(date) {
 // 📥 Get Posts
 // =========================
 function getPosts() {
-  axios.get(`${API}/posts`)
+  axios.get(`${API_BASE}posts`)
     .then((res) => {
       const posts = res.data;
       let container = document.getElementById("postes");
@@ -89,7 +89,7 @@ function createPost() {
       "body" : body,
       "image": "https://picsum.photos/500/300?random=" + Date.now()
     }
-    axios.post(`${API}/posts`, params, {
+    axios.post(`${API_BASE}posts`, params, {
       headers: {
         Authorization: `Bearer ${getToken()}`
       }
@@ -126,7 +126,7 @@ function login() {
   const password = document.getElementById("login-password").value.trim();
   const logoutBtn = document.getElementById("logout-btn");
 
-  axios.post(`${API}/login`, {
+  axios.post(`${API_BASE}login`, {
     email,
     password
   })
@@ -220,7 +220,7 @@ function register() {
   const email = document.getElementById("email-register").value.trim();
   const password = document.getElementById("password-register").value.trim();
 
-  axios.post(`${API}/register`, {
+  axios.post(`${API_BASE}register`, {
     name,
     email,
     password
