@@ -42,11 +42,11 @@ function getPosts() {
             <div class="card w-100 my-5">
               <div class="card-body">
                 <img class="rounded-circle" style="width:40px;height:40px"
-                  src="${post.user.profileImage}">
+                  src="${post.user.profileImage}" alt="User profile image">
                 <h5 class="d-inline">@${post.user.name}</h5>
               </div>
               <div class="card-body">
-                <img src="${post.image}" class="card-img-top" alt="Post image">
+                <img src="${post.image}" class="card-img-top w-100" alt="Post image">
                 <p class="text-black-50">
                   ${timeAgo(post.createdAt)}
                 </p>
